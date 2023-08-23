@@ -8,14 +8,26 @@ import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) {
-        String host = "127.0.0.1";
+        String host = "netology.homework";
         int port = 8080;
         try (Socket clientSocket = new Socket(host, port);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-            out.println("Evgenii");
-            String resp = in.readLine();
-            System.out.println(resp);
+            String serverMessage = in.readLine();
+            System.out.println(serverMessage);
+
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            String name = userInput.readLine();
+            out.println(name);
+
+            String secondMessage = in.readLine();
+            System.out.println(secondMessage);
+
+            String answer = userInput.readLine();
+            out.println(answer);
+
+            String response = in.readLine();
+            System.out.println(response);
         } catch (IOException e) {
             e.printStackTrace();
         }
